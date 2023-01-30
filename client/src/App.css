@@ -1,0 +1,47 @@
+.app {
+    margin: 20px 0;
+}
+
+.form {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.form > button {
+    border-radius: 10px;
+    background-color: purple;
+    border: none;
+    color: white;
+    width: 60px;
+    font-size: 0.8rem;
+}
+
+.image-container {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.image-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.img {
+    height: 300px;
+    width: 400px;
+}
+
+.image-button {
+    margin-top: 5px;
+    border-radius: 10px;
+    background-color: purple;
+    border: none;
+    color: white;
+    width: 60px;
+    font-size: 0.8rem;
+}
