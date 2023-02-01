@@ -16,7 +16,9 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("pic", pic);
+        for(let i = 0; i < pic.length; i++) {
+            formData.append("pic", pic[i]);
+        }
 
         await axios
             .post("http://localhost:4000/upload-image", formData)
@@ -45,8 +47,9 @@ function App() {
                 style={{ justifyContent: "center" }}
             >
                 <input
+                    multiple
                     type="file"
-                    onChange={(e) => setPic(e.target.files[0])}
+                    onChange={(e) => setPic(e.target.files)}
                 />
                 <button style={{ cursor: "pointer" }}>Upload</button>
             </form>

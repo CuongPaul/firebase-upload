@@ -17,19 +17,21 @@ app.use(express.json());
 const memoStorage = multer.memoryStorage();
 const upload = multer({ memoStorage });
 
-app.post("/upload-image", upload.single("pic"), async (req, res) => {
-    const file = req.file;
-
-    if (file) {
-        const metatype = {
-            name: file.originalname,
-            contentType: file.mimetype,
-        };
-        const imageRef = ref(storage, file.originalname);
-
-        await uploadBytes(imageRef, file.buffer, metatype)
-            .then((snapshot) => res.json({ message: "success" }))
-            .catch((error) => console.log(error.message));
+app.post("/upload-image", upload.any("pic"), async (req, res) => {
+    const files = req.files;
+    
+    if (files.length) {
+        files.forEach(async(file) => {
+            const metatype = {
+                name: file.originalname,
+                contentType: file.mimetype,
+            };
+            const imageRef = ref(storage, file.originalname);
+    
+            await uploadBytes(imageRef, file.buffer, metatype)
+                .then((snapshot) => res.json({ message: "success" }))
+                .catch((error) => console.log(error.message));
+        })
     } else {
         res.json({ message: "File is empty" });
     }
