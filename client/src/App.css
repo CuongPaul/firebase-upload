@@ -20,14 +20,13 @@
 .image-container {
     margin: 20px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .image-item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin: 15px;
     align-items: center;
 }
 
