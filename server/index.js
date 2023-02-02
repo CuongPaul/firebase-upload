@@ -3,7 +3,7 @@ import multer from "multer";
 import express from "express";
 import * as dotenv from "dotenv";
 import storage from "./firebase";
-import { ref, listAll, uploadBytes, deleteObject } from "firebase/storage";
+import { ref, listAll, uploadBytes, deleteObject, getDownloadURL } from "firebase/storage";
 
 dotenv.config();
 
@@ -31,6 +31,8 @@ app.post("/upload-image", upload.any("pic"), async (req, res) => {
             await uploadBytes(imageRef, file.buffer, metatype)
                 .then((snapshot) => res.json({ message: "success" }))
                 .catch((error) => console.log(error.message));
+
+            const url = await getDownloadURL(imageRef);
         })
     } else {
         res.json({ message: "File is empty" });
