@@ -26,7 +26,7 @@ app.post("/upload-image", upload.any("pic"), async (req, res) => {
                 name: file.originalname,
                 contentType: file.mimetype,
             };
-            const imageRef = ref(storage, file.originalname);
+            const imageRef = ref(storage, `picture/${file.originalname}`);
     
             await uploadBytes(imageRef, file.buffer, metatype)
                 .then((snapshot) => res.json({ message: "success" }))
